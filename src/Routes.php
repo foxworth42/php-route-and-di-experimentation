@@ -20,7 +20,7 @@ class Routes
     private function initRoutes()
     {
         $this->routes = new RouteCollection();
-        $this->addRoute("/path/thing", FirstController::class, "respondToPath", ["Request"]);
+        $this->addRoute("/path/thing", FirstController::class, "respondToPath", ["Request", "Twig"]);
         $this->addRoute("/second/path", SecondController::class, "respond", ["Request", "Database"]);
     }
 

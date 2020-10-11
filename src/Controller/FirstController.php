@@ -7,9 +7,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 class FirstController
 {
-    public function respondToPath(Request $request): Response
+    public function respondToPath(Request $request, $twig): Response
     {
-        var_dump($request);
-        return new Response("Something");
+        return new Response($twig->render("index.twig", ["testText" => "Some Test Text!"]));
     }
 }

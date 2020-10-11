@@ -26,7 +26,10 @@ class Routes
 
     private function addRoute($path, $class, $handler, $dependencyInjection = [])
     {
-        $this->routes->add($handler, new Route($path, ['_controller' => $class, "dependencyInjection" => $dependencyInjection]));
+        $this->routes->add($handler, new Route($path, [
+            '_controller' => $class,
+            "dependencyInjection" => $dependencyInjection
+        ]));
     }
 
     public function getRouteHandler($route)

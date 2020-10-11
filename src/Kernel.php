@@ -3,6 +3,7 @@
 namespace Foxworth42;
 
 use Foxworth42\DependencyFactory\RequestFactory;
+use Foxworth42\DependencyFactory\TwigFactory;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
@@ -27,7 +28,7 @@ class Kernel
         } catch (\Exception $error) {
             $response = new Response($error->getMessage());
             if($error instanceof ResourceNotFoundException) {
-                $response->setStatusCode(404);
+                $response = new Response(TwigFactory::getInstance()->render("404.twig", ["message" => $error->getMessage()]), 404);
             }
         }
 

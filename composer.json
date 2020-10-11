@@ -4,6 +4,7 @@
     "license": "MIT",
     "minimum-stability": "stable",
     "require": {
+        "php": ">=7.1.0",
         "symfony/http-foundation": "^5.1",
         "symfony/routing": "^5.1",
         "twig/twig": "^3.0"
@@ -23,6 +24,7 @@
         "test": "phpunit",
         "lint": "phpcs",
         "lint-fix": "phpcbf",
-        "stat": "phpstan analyse"
+        "stat": "phpstan analyse",
+        "build": "phpunit && phpcs && phpstan analyse"
     }
 }

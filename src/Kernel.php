@@ -21,10 +21,12 @@ class Kernel
     {
         try {
             $requestHandlerConfig = $this->routes->getRouteHandler($this->request->getPathInfo());
-            $requestHandler = new $requestHandlerConfig["_controller"]();
             $dependencies = $this->getDependencies($requestHandlerConfig["dependencyInjection"]);
 
-            $response = call_user_func_array([$requestHandler, $requestHandlerConfig["_route"]], $dependencies);
+            $response = call_user_func_array([
+                new $requestHandlerConfig["_controller"](),
+                $requestHandlerConfig["_route"]
+            ], $dependencies);
         } catch (\Exception $error) {
             $response = new Response($error->getMessage());
             if ($error instanceof ResourceNotFoundException) {

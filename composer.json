@@ -1,0 +1,16 @@
+{
+    "name": "foxworth42/php-experimentation",
+    "type": "project",
+    "license": "MIT",
+    "minimum-stability": "stable",
+    "require": {
+        "symfony/http-foundation": "^5.1",
+        "symfony/routing": "^5.1"
+    },
+    "autoload": {
+        "psr-4": { "Foxworth42\\": "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "Foxworth42\\Tests\\": "tests/" }
+    }
+}

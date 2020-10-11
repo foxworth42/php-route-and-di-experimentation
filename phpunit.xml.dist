@@ -26,5 +26,7 @@
       <directory>test/</directory>
     </testsuite>
   </testsuites>
-  <logging/>
+  <logging>
+    <junit outputFile="build/logs/junit.xml"/>
+  </logging>
 </phpunit>

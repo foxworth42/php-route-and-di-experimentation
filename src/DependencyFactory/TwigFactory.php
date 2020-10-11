@@ -7,7 +7,7 @@ use Twig\Loader\FilesystemLoader;
 
 class TwigFactory
 {
-    public static function getInstance()
+    public static function getInstance(): Environment
     {
         $loader = new FilesystemLoader(__DIR__ . "/../../templates");
         $twig = new Environment($loader, [

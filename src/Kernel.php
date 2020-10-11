@@ -17,7 +17,7 @@ class Kernel
         $this->request = RequestFactory::getInstance();
     }
 
-    public function run()
+    public function run(): void
     {
         try {
             $requestHandlerConfig = $this->routes->getRouteHandler($this->request->getPathInfo());
@@ -39,11 +39,11 @@ class Kernel
         $response->send();
     }
 
-    private function getDependencies($dependencyInjection): array
+    private function getDependencies(array $dependencyInjectionConfig): array
     {
         $params = [];
-        if ($dependencyInjection !== []) {
-            foreach ($dependencyInjection as $dependency) {
+        if ($dependencyInjectionConfig !== []) {
+            foreach ($dependencyInjectionConfig as $dependency) {
                 array_push($params, call_user_func([
                     sprintf("Foxworth42\DependencyFactory\%sFactory", $dependency),
                     "getInstance"

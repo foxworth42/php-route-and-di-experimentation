@@ -11,20 +11,22 @@ use Symfony\Component\Routing\RouteCollection;
 
 class Routes
 {
+    /** @var RouteCollection */
     private $routes;
+
     public function __construct()
     {
         $this->initRoutes();
     }
 
-    private function initRoutes()
+    private function initRoutes(): void
     {
         $this->routes = new RouteCollection();
         $this->addRoute("/path/thing", FirstController::class, "respondToPath", ["Request", "Twig"]);
         $this->addRoute("/second/path", SecondController::class, "respond", ["Request", "Database"]);
     }
 
-    private function addRoute($path, $class, $handler, $dependencyInjection = [])
+    private function addRoute(string $path, string $class, string $handler, array $dependencyInjection = []): void
     {
         $this->routes->add($handler, new Route($path, [
             '_controller' => $class,
@@ -32,7 +34,7 @@ class Routes
         ]));
     }
 
-    public function getRouteHandler($route)
+    public function getRouteHandler(string $route): array
     {
         $context = new RequestContext();
         $matcher = new UrlMatcher($this->routes, $context);

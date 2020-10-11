@@ -1,0 +1,9 @@
+parameters:
+	level: 6
+	inferPrivatePropertyTypeFromConstructor: true
+	checkMissingIterableValueType: false
+	paths:
+		- ./src/
+	excludes_analyse:
+		- */cache/*
+	ignoreErrors:

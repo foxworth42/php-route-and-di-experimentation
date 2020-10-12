@@ -2,23 +2,19 @@
 
 namespace Foxworth42\Controller;
 
-use Foxworth42\Database;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class SecondController
+class ThirdController
 {
     private $request;
-    private $database;
-
-    public function __construct(Request $request, Database $database)
+    public function __construct(Request $request)
     {
         $this->request = $request;
-        $this->database = $database;
     }
 
     public function respond(): Response
     {
-        return new Response($this->database->something());
+        return new Response("Some Other content");
     }
 }

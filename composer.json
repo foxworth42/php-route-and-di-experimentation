@@ -7,7 +7,10 @@
         "php": ">=7.1.0",
         "symfony/http-foundation": "^5.1",
         "symfony/routing": "^5.1",
-        "twig/twig": "^3.0"
+        "twig/twig": "^3.0",
+        "symfony/dependency-injection": "^5.1",
+        "symfony/config": "^5.1",
+        "symfony/yaml": "^5.1"
     },
     "autoload": {
         "psr-4": { "Foxworth42\\": "src/" }

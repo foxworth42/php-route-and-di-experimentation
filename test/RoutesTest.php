@@ -32,7 +32,6 @@ class RoutesTest extends TestCase
         // Assert
         $this->assertSame("Foxworth42\Controller\FirstController", $result["_controller"]);
         $this->assertSame("respondToPath", $result["_route"]);
-        $this->assertSame(["Request", "Twig"], $result["dependencyInjection"]);
     }
 
     /**

@@ -15,11 +15,11 @@ class FirstControllerTest extends TestCase
     public function shouldReturnSomething()
     {
         // Arrange
-        $testController = new FirstController();
-        $mockTwig = TwigFactory::getInstance();
+        $mockTwig = new TwigFactory();
         $mockRequest = $this->getMockBuilder(Request::class)->disableOriginalConstructor()->getMock();
+        $testController = new FirstController($mockRequest, $mockTwig);
         // Act
-        $result = $testController->respondToPath($mockRequest, $mockTwig);
+        $result = $testController->respondToPath();
         // Assert
         $this->assertEquals("Some text: Some Test Text!", $result->getContent());
     }

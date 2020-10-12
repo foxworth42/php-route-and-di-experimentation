@@ -1,0 +1,18 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    Foxworth42\:
+        resource: '../src/*'
+        exclude: '../src/{DependencyInjection,Entity,Tests,Kernel.php}'
+        public: true
+
+    Symfony\Component\HttpFoundation\Request:
+        public: true
+#    App\Service\TwitterClient:
+#        # redundant thanks to _defaults, but value is overridable on each service
+#        autowire: true
+#
+#    App\Util\Rot13Transformer:
+#        autowire: true

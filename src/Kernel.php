@@ -3,6 +3,9 @@
 namespace Foxworth42;
 
 use Foxworth42\DependencyFactory\TwigFactory;
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
@@ -20,12 +23,15 @@ class Kernel
     public function run(): Response
     {
         try {
+            $containerBuilder = new ContainerBuilder();
+            (new YamlFileLoader($containerBuilder, new FileLocator(__DIR__ . "/../config")))->load("services.yaml");
+            $containerBuilder->compile(true);
+
             $requestHandlerConfig = $this->routes->getRouteHandler($this->request->getPathInfo());
-            $response = $this->handleRequest(
-                $requestHandlerConfig["_controller"],
-                $requestHandlerConfig["_route"],
-                $this->getDependencies($requestHandlerConfig["dependencyInjection"])
-            );
+
+            $controller = $containerBuilder->get($requestHandlerConfig["_controller"]);
+
+            $response = $controller->{$requestHandlerConfig["_route"]}();
         } catch (\Exception $error) {
             $response = new Response($error->getMessage());
             if ($error instanceof ResourceNotFoundException) {
@@ -35,29 +41,6 @@ class Kernel
             }
         }
 
-        return $response;
-    }
-
-    private function getDependencies(array $dependencyInjectionConfig): array
-    {
-        $params = [];
-        if ($dependencyInjectionConfig !== []) {
-            foreach ($dependencyInjectionConfig as $dependency) {
-                array_push($params, call_user_func([
-                    sprintf("Foxworth42\DependencyFactory\%sFactory", $dependency),
-                    "getInstance"
-                ]));
-            }
-        }
-        return $params;
-    }
-
-    private function handleRequest(string $handlerClass, string $handlerMethod, array $dependencies): Response
-    {
-        $response = call_user_func_array([
-            new $handlerClass(),
-            $handlerMethod
-        ], $dependencies);
         return $response;
     }
 }

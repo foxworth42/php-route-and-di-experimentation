@@ -18,9 +18,9 @@ class SecondControllerTest extends TestCase
         $mockRequest = $this->getMockBuilder(Request::class)->disableOriginalConstructor()->getMock();
         $mockDatabase = $this->getMockBuilder(Database::class)->disableOriginalConstructor()->getMock();
         $mockDatabase->method("something")->willReturn("Some Text");
-        $testController = new SecondController();
+        $testController = new SecondController($mockRequest, $mockDatabase);
         // Act
-        $response = $testController->respond($mockRequest, $mockDatabase);
+        $response = $testController->respond();
         // Assert
         $this->assertEquals("Some Text", $response->getContent());
     }

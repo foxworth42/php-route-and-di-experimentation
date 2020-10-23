@@ -35,7 +35,7 @@ class Kernel
         } catch (\Exception $error) {
             $response = new Response($error->getMessage());
             if ($error instanceof ResourceNotFoundException) {
-                $response = new Response(TwigFactory::getInstance()->render("404.twig", [
+                $response = new Response(TwigFactory::create()->render("404.twig", [
                     "message" => $error->getMessage()
                 ]), 404);
             }

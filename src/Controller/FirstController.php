@@ -15,7 +15,7 @@ class FirstController
     public function __construct(Request $request, TwigFactory $twig)
     {
         $this->request = $request;
-        $this->twig = $twig::getInstance();
+        $this->twig = $twig::create();
     }
 
     public function respondToPath(): Response

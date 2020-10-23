@@ -8,7 +8,7 @@ trait FactoryAssertionTrait
     {
         // Arrange
         // Act
-        $createdClass = $factory::getInstance();
+        $createdClass = $factory::create();
         // Assert
         $this->assertInstanceOf($expectedClass, $createdClass);
     }

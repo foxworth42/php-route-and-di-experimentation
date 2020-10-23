@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class RequestFactory
 {
-    public static function getInstance(): Request
+    public static function create(): Request
     {
         return Request::createFromGlobals();
     }

@@ -6,7 +6,7 @@ use Foxworth42\Database;
 
 class DatabaseFactory
 {
-    public static function getInstance(): Database
+    public static function create(): Database
     {
         return new Database();
     }
